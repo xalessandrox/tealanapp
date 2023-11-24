@@ -7,6 +7,7 @@ import { Student } from "../../interfaces/Student";
 import { Page } from "../../interfaces/Page";
 import { DataState } from "../../enums/DataState";
 import { Language } from "../../enums/Language";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component( {
 	selector : 'app-students',
@@ -14,11 +15,13 @@ import { Language } from "../../enums/Language";
 	styleUrl : './students.component.scss'
 } )
 export class StudentsComponent implements OnInit {
-	protected readonly DataState = DataState;
 	studentsState$: Observable<AppState<CustomHttpResponse<Page<Student>>>>;
 	dataSubject = new BehaviorSubject<CustomHttpResponse<Page<Student>>>( null );
+	protected readonly DataState = DataState;
 
-	constructor( private studentService: StudentService ) {
+	constructor(
+		private studentService: StudentService,
+		private domSanitizer: DomSanitizer ) {
 	}
 
 	ngOnInit(): void {
@@ -26,20 +29,24 @@ export class StudentsComponent implements OnInit {
 		.pipe(
 			map( getXHRResponse => {
 				console.log( getXHRResponse );
-				this.dataSubject.next(getXHRResponse);
+				this.dataSubject.next( getXHRResponse );
 				return {
-					dataState: DataState.Loaded,
-					appData: getXHRResponse
+					dataState : DataState.Loaded,
+					appData : getXHRResponse
 				};
 			} ),
-			startWith({dataState: DataState.Loading}),
-			catchError(error => {
-				return of({
-					dataState: DataState.Error,
+			startWith( { dataState : DataState.Loading } ),
+			catchError( error => {
+				return of( {
+					dataState : DataState.Error,
 					error
-				});
-			})
+				} );
+			} )
 		);
+	}
+
+	getHtml(html: string) {
+		return this.domSanitizer.bypassSecurityTrustHtml(html);
 	}
 
 }

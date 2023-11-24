@@ -1,7 +1,7 @@
-import { Language } from "../enums/Language";
 import { Lesson } from "./Lesson";
 import { Level } from "../enums/Level";
 import { Status } from "../enums/Status";
+import { LanguageResource } from "./LanguageResource";
 
 export interface Student {
 	id: number,
@@ -9,7 +9,7 @@ export interface Student {
 	lastName: string,
 	email?: string,
 	phone?: string,
-	language: Language[],
+	language: LanguageResource[],
 	lessons?: Lesson[],
 	balance: number,
 	status?: Status,

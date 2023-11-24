@@ -13,23 +13,23 @@
         </nav>
 
         <div class="col-xm-12">
-          <table class="table table-hover">
+          <table class="table table-hover table-striped">
             <thead>
             <tr>
-              <th class="text-center" scope="col">ID</th>
-              <th class="text-center" scope="col">Full name</th>
-              <th class="text-center" scope="col">Language</th>
-              <th class="text-center" scope="col">Level</th>
-              <th class="text-center" scope="col">Since</th>
+<!--               <th class="text-left" scope="col">ID</th> -->
+              <th class="text-right" scope="col">Full name</th>
+              <th class="text-right" scope="col">Language</th>
+              <th class="text-right" scope="col">Level</th>
+              <th class="text-right" scope="col">Since</th>
             </tr>
             </thead>
             <tbody class="table-body">
             <tr *ngFor="let student of state?.appData?.data?.page?.content">
-              <td>{{ student.id }}</td>
-              <td>{{ student.firstName }}  {{ student.lastName }}</td>
-              <td>{{ student.languages | json}}</td>
-              <td>{{ student.level }}</td>
-              <td>{{ student.createdAt }}</td>
+<!--               <td>{{ student.id }}</td> -->
+              <td class="text-right">{{ student.firstName }}  {{ student.lastName }}</td>
+              <td class="text-right" [innerHtml] =  "student.languageResources | langParse"> </td>
+              <td class="text-right">{{ student.level }}</td>
+              <td class="text-right">{{ student.createdAt | dateFormat}}</td>
             </tr>
             </tbody>
           </table>

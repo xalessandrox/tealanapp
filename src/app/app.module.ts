@@ -6,12 +6,14 @@ import { AppRoutingModule } from "./app-routing.module";
 import { StudentService } from "./services/student.service";
 import { HttpClientModule } from "@angular/common/http";
 import { LanguagePipe } from "./pipes/language-pipe";
+import { DateFormatPipe } from "./pipes/date-format";
 
 @NgModule({
 	declarations: [
 		StudentsComponent,
 		AppComponent,
-		LanguagePipe
+		LanguagePipe,
+		DateFormatPipe
 	],
 	imports: [
 		BrowserModule,
