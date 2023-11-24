@@ -2,25 +2,18 @@
 body {
   min-height: 100dvh;
   background: url("assets/designer-wallpaper.jpg");
-  //background-position: left;
   opacity: 1;
   font-family: "Comic Sans MS";
-
 }
 
-.breadcrumb {
-
-  .breadcrumb-item {
-    color: cadetblue;
-
-    a {
-     color: inherit;
-    }
-
-    &.active {
-      color: white;
-    }
-
-  }
-
+.breadcrumb .breadcrumb-item {
+  color: cadetblue;
 }
+.breadcrumb .breadcrumb-item a {
+  color: inherit;
+}
+.breadcrumb .breadcrumb-item.active {
+  color: white;
+}
+
+/*# sourceMappingURL=styles.css.map */
