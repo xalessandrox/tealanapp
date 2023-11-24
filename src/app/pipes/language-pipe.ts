@@ -1,19 +1,24 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Language } from "../enums/Language";
+import { LanguageResource } from "../interfaces/LanguageResource";
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 @Pipe({
-  name: 'sumArray'
+  name: 'langParse'
 })
 export class LanguagePipe implements PipeTransform {
 
-  transform(value: Array<Language>, ...args: unknown[]): number | any {
+  constructor(private sanitizer: DomSanitizer) {
+  }
+
+  transform(value: Array<LanguageResource>, ...args: unknown[]): SafeHtml {
+    let result: string = "";
     if (value instanceof Array) {
-
-      value.forEach(lang => {
-
+      value.forEach((resource) => {
+        result += `<span>${resource.name} <img src=${resource.flagUrl} height="20" width="30"></span> `;
       })
     }
-
+    return this.sanitizer.bypassSecurityTrustHtml(result);
   }
 
 }
