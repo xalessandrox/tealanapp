@@ -16,7 +16,6 @@
           <table class="table table-hover table-striped">
             <thead>
             <tr>
-<!--               <th class="text-left" scope="col">ID</th> -->
               <th class="text-right" scope="col">Full name</th>
               <th class="text-right" scope="col">Language</th>
               <th class="text-right" scope="col">Level</th>
@@ -25,7 +24,6 @@
             </thead>
             <tbody class="table-body">
             <tr *ngFor="let student of state?.appData?.data?.page?.content">
-<!--               <td>{{ student.id }}</td> -->
               <td class="text-right">{{ student.firstName }}  {{ student.lastName }}</td>
               <td class="text-right" [innerHtml] =  "student.languageResources | langParse"> </td>
               <td class="text-right">{{ student.level }}</td>

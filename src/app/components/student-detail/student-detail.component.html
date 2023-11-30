@@ -1,1 +1,66 @@
-<p>student-detail works!</p>
+<ng-container *ngIf="(studentDetailState$ | async) as state" [ngSwitch]="state.dataState">
+  <ng-container *ngSwitchCase="DataState.Loaded">
+    <section>
+      <div class="container">
+        <nav aria-label="breadcrumb" style="margin-top: 8px">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/']">Home</a>
+            </li>
+            <li class="breadcrumb-item">Students</li>
+            <li class="breadcrumb-item active">List</li>
+          </ol>
+        </nav>
+
+
+        <div class="row">
+          <div class="col-xm-6">
+            <div class="form-group">
+              <label></label>
+              <input class="form-control" type="text" name="firstName">
+            </div>
+            <div class="form-group">
+              <label></label>
+              <input class="form-control" type="text" name="lastName">
+            </div>
+            <div class="form-group">
+              <label></label>
+              <input class="form-control" type="text" name="email">
+            </div>
+            <div class="form-group">
+              <label></label>
+              <input class="form-control" type="text" name="phone">
+            </div>
+          </div>
+
+          <div class="col-xm-6">
+            <div class="form-group">
+              <label></label>
+              <input class="form-control" type="text" name="languages">
+            </div>
+            <div class="form-group">
+              <label></label>
+              <input class="form-control" type="text" name="level">
+            </div>
+            <div class="form-group">
+              <label></label>
+              <input class="form-control" type="text" name="balance">
+            </div>
+            <div class="form-group">
+              <label></label>
+              <input class="form-control" type="text" name="createdAt">
+            </div>
+            <div class="form-group">
+              <label></label>
+              <input class="form-control" type="text" name="status">
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </ng-container>
+
+</ng-container>
+

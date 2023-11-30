@@ -1,23 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { catchError, Observable, tap, throwError } from "rxjs";
+import { catchError, Observable, throwError } from "rxjs";
 import { CustomHttpResponse } from "../interfaces/CustomHttpResponse";
 import { Page } from "../interfaces/Page";
 import { Student } from "../interfaces/Student";
 
-@Injectable({
-	providedIn: 'root'
-})
+@Injectable( {
+	providedIn : 'root'
+} )
 export class StudentService {
-	constructor(private httpClient: HttpClient) {
+	constructor( private httpClient: HttpClient ) {
 	}
 
-	student$ = (pageNumber: number = 0) => <Observable<CustomHttpResponse<Page<Student>>>>
+	students$ = ( pageNumber: number = 0 ) => <Observable<CustomHttpResponse<Page<Student>>>>
 		this.httpClient.get<CustomHttpResponse<Page<Student>>>
-		(`http://localhost:8080/students/getAll`)
-			.pipe(
-				catchError(this.handleError)
-			);
+		( `http://localhost:8080/students/getAll` )
+		.pipe(
+			catchError( this.handleError )
+		);
+
+	studentDetail$ = (id: number) => <Observable<CustomHttpResponse<Student>>>
+		this.httpClient.get<CustomHttpResponse<Page<Student>>>
+		( `http://localhost:8080/students/get/${id}` )
+		.pipe(
+			catchError( this.handleError )
+		);
+
 
 	private handleError( response: HttpErrorResponse ): Observable<never> {
 		console.log( response );
