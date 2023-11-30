@@ -25,7 +25,7 @@ export class StudentsComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.studentsState$ = this.studentService.student$()
+		this.studentsState$ = this.studentService.students$()
 		.pipe(
 			map( getXHRResponse => {
 				console.log( getXHRResponse );
