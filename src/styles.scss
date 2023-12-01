@@ -4,8 +4,12 @@ body {
   background: url("assets/designer-wallpaper.jpg");
   //background-position: left;
   opacity: 1;
-  font-family: "Comic Sans MS";
+  font-family: "Comic Sans MS", fantasy;
 
+}
+
+form:not(input) {
+  color: #cda;
 }
 
 .breadcrumb {
@@ -14,7 +18,7 @@ body {
     color: cadetblue;
 
     a {
-     color: inherit;
+      color: inherit;
     }
 
     &.active {

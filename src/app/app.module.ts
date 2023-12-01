@@ -7,6 +7,7 @@ import { StudentService } from "./services/student.service";
 import { HttpClientModule } from "@angular/common/http";
 import { LanguagePipe } from "./pipes/language-pipe";
 import { DateFormatPipe } from "./pipes/date-format";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
 	declarations: [
@@ -18,7 +19,9 @@ import { DateFormatPipe } from "./pipes/date-format";
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
-		HttpClientModule
+		HttpClientModule,
+		FormsModule
+
 	],
 	providers: [
 		StudentService

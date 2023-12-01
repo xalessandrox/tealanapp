@@ -8,6 +8,7 @@ import { Page } from "../../interfaces/Page";
 import { DataState } from "../../enums/DataState";
 import { Language } from "../../enums/Language";
 import { DomSanitizer } from "@angular/platform-browser";
+import { Router } from "@angular/router";
 
 @Component( {
 	selector : 'app-students',
@@ -21,7 +22,8 @@ export class StudentsComponent implements OnInit {
 
 	constructor(
 		private studentService: StudentService,
-		private domSanitizer: DomSanitizer ) {
+		private domSanitizer: DomSanitizer,
+		private router: Router) {
 	}
 
 	ngOnInit(): void {
@@ -47,6 +49,10 @@ export class StudentsComponent implements OnInit {
 
 	getHtml(html: string) {
 		return this.domSanitizer.bypassSecurityTrustHtml(html);
+	}
+
+	getStudent(id: number) {
+		this.router.navigate([ `/students/${ id }` ]);
 	}
 
 }

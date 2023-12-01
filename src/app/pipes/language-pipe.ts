@@ -1,24 +1,31 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Language } from "../enums/Language";
-import { LanguageResource } from "../interfaces/LanguageResource";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
+import { Student } from "../interfaces/Student";
 
-@Pipe({
-  name: 'langParse'
-})
+@Pipe( {
+	name : 'langParse'
+} )
 export class LanguagePipe implements PipeTransform {
 
-  constructor(private sanitizer: DomSanitizer) {
-  }
+	constructor( private sanitizer: DomSanitizer ) {
+	}
 
-  transform(value: Array<LanguageResource>, ...args: unknown[]): SafeHtml {
-    let result: string = "";
-    if (value instanceof Array) {
-      value.forEach((resource) => {
-        result += `<span>${resource.name} <img src=${resource.flagUrl} height="20" width="30"></span> `;
-      })
-    }
-    return this.sanitizer.bypassSecurityTrustHtml(result);
-  }
+	transform( student: Student, ...args: unknown[] ): SafeHtml {
+		let result: string = "";
+
+		student.languageLevel.forEach( ( level ) => {
+			let languageResource = student.languageResources
+			.filter( resource => {
+				return resource.name === level.language
+			} )
+			.map( ( a ) => {
+				return a.flagUrl
+			} );
+			result += `<span><img src=${ languageResource } height="18" width="24"> ${ level.language }  / ${ level.level }</span> ~ `;
+
+		} );
+
+		return this.sanitizer.bypassSecurityTrustHtml( result.substring( 0, result.length - 2 ) );
+	}
 
 }
