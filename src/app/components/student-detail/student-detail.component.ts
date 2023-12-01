@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 import { BehaviorSubject, catchError, map, Observable, of, startWith, switchMap } from "rxjs";
 import { AppState } from "../../interfaces/AppState";
 import { CustomHttpResponse } from "../../interfaces/CustomHttpResponse";
-import { Page } from "../../interfaces/Page";
 import { Student } from "../../interfaces/Student";
 import { ActivatedRoute, ParamMap, RouterLink } from "@angular/router";
 import { StudentService } from "../../services/student.service";
 import { DataState } from "../../enums/DataState";
+import { FormsModule, NgForm } from "@angular/forms";
 
 @Component({
   selector: 'app-student-detail',
   standalone: true,
-  imports : [ CommonModule, RouterLink ],
+  imports : [ CommonModule, RouterLink, FormsModule ],
   templateUrl: './student-detail.component.html',
   styleUrl: './student-detail.component.scss'
 })
@@ -30,6 +30,7 @@ constructor(private activatedRoute: ActivatedRoute, private studentService: Stud
           .pipe(
             map( response => {
               this.dataSubject.next( response );
+              console.log("response:->", response)
               return {
                 dataState : DataState.Loaded,
                 appData : response
@@ -48,5 +49,8 @@ constructor(private activatedRoute: ActivatedRoute, private studentService: Stud
   }
 
 
+  updateStudent(studentDetailForm: NgForm) {
+
+  }
 
 }

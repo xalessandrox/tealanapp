@@ -21,7 +21,7 @@ export class StudentService {
 
 	studentDetail$ = (id: number) => <Observable<CustomHttpResponse<Student>>>
 		this.httpClient.get<CustomHttpResponse<Page<Student>>>
-		( `http://localhost:8080/students/get/${id}` )
+		( `http://localhost:8080/students/${id}` )
 		.pipe(
 			catchError( this.handleError )
 		);

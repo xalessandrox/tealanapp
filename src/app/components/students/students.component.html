@@ -17,16 +17,14 @@
             <thead>
             <tr>
               <th class="text-right" scope="col">Full name</th>
-              <th class="text-right" scope="col">Language</th>
-              <th class="text-right" scope="col">Level</th>
+              <th class="text-right" scope="col" rowspan="2">Language / Level</th>
               <th class="text-right" scope="col">Since</th>
             </tr>
             </thead>
             <tbody class="table-body">
-            <tr *ngFor="let student of state?.appData?.data?.page?.content">
+            <tr (click)="getStudent(student.id)" *ngFor="let student of state?.appData?.data?.page?.content">
               <td class="text-right">{{ student.firstName }}  {{ student.lastName }}</td>
-              <td class="text-right" [innerHtml] =  "student.languageResources | langParse"> </td>
-              <td class="text-right">{{ student.level }}</td>
+              <td class="text-right" [innerHtml]="student | langParse"></td>
               <td class="text-right">{{ student.createdAt | dateFormat}}</td>
             </tr>
             </tbody>

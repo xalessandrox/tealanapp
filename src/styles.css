@@ -3,7 +3,11 @@ body {
   min-height: 100dvh;
   background: url("assets/designer-wallpaper.jpg");
   opacity: 1;
-  font-family: "Comic Sans MS";
+  font-family: "Comic Sans MS", fantasy;
+}
+
+form:not(input) {
+  color: #cda;
 }
 
 .breadcrumb .breadcrumb-item {
